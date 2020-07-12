@@ -12,7 +12,7 @@ public class Messages {
 
   private final List<Message> list = new ArrayList<>();
 
-  void add(Message message) {
+  public void add(Message message) {
     list.add(message);
   }
 

@@ -9,7 +9,6 @@ import net.cabezudo.sofia.sic.elements.SICUnexpectedEndOfCodeException;
 import net.cabezudo.sofia.sic.exceptions.EmptyQueueException;
 import net.cabezudo.sofia.sic.objects.SICObject;
 import net.cabezudo.sofia.sic.objects.SICRuntimeException;
-import net.cabezudo.sofia.sic.tokens.Token;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -17,7 +16,7 @@ import net.cabezudo.sofia.sic.tokens.Token;
  */
 public class Main {
 
-  public static void main(String... args) throws EmptyQueueException, JSONParseException, PropertyNotExistException, SICCompileTimeException, SICUnexpectedEndOfCodeException {
+  public static void main(String... args) throws EmptyQueueException, JSONParseException, PropertyNotExistException, SICCompileTimeException, SICUnexpectedEndOfCodeException, SICRuntimeException {
 //    String code = "main(loadImage(name=/home/esteban/NetBeansProjects/sofia.cabezudo.net/system/sources/sites/manager/1/images/test.jpg),resize(width=300,height=300))";
     //String code = "    main(    loadImage(   name=/home/esteban/NetBeansProjects/sofia.cabezudo.net/system/sources/sites/manager/1/images/test.jpg   )  ,  resize( scale   =   0.5   )   ,   resize(    width   =   1200   , height  =  800  )  )";
     //  String code = "\nmain(\nloadImage(name=/home/esteban/NetBeansProjects/sofia.cabezudo.net/system/sources/sites/manager/1/images/test.jpg),resize(scale=.2),resize(\nwidth=1200, height=800))";
@@ -45,28 +44,15 @@ public class Main {
 //    test("main(loadImage(name=/images/test.600.400.jpg),gray(method=colorChannel,type=blue))");
 //    test("main(loadImage(name=/images/test.600.400.jpg),gray(method=grayShades,value=30))");
 //    test("main(loadImage(name=/images/test.600.400.jpg),gray(method=grayShades))");
+    test("main(loadImage(name=/images/test.600.400.jpg),gray(method=colorChannel,channel=red))");
   }
 
-  private static void test(String code) {
-    System.out.println("*** " + code);
-    Path basePath = Paths.get("/home/esteban/NetBeansProjects/sofia.cabezudo.net/system/sources/sites/manager/1/");
-    try {
-      SofiaImageCode sofiaImageCode = new SofiaImageCode(basePath, code, true);
-
-      if (sofiaImageCode.getMessages().size() == 0) {
-        Tokens tokens = sofiaImageCode.getTokens();
-        for (Token token : tokens) {
-          System.out.print(token.getValue());
-        }
-
-        SICObject object = sofiaImageCode.compile();
-        object.run();
-      } else {
-        System.out.println(sofiaImageCode.getMessages().toJSON());
-      }
-    } catch (SICCompileTimeException | SICRuntimeException e) {
-      System.out.println(e.getMessage() + " " + e.getPosition());
-      e.printStackTrace();
-    }
+  private static void test(String code) throws SICRuntimeException, SICCompileTimeException {
+    Path resourceDirectory = Paths.get("test", "resources");
+    String resourcesPath = resourceDirectory.toFile().getAbsolutePath();
+    Path basePath = Paths.get(resourcesPath);
+    SofiaImageCode sofiaImageCode = new SofiaImageCode(basePath, code, true);
+    SICObject object = sofiaImageCode.compile();
+    object.run();
   }
 }

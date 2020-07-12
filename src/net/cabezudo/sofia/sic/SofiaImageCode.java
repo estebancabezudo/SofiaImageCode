@@ -1,6 +1,8 @@
 package net.cabezudo.sofia.sic;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import net.cabezudo.sofia.sic.elements.SICCompileTimeException;
 import net.cabezudo.sofia.sic.elements.SICElement;
 import net.cabezudo.sofia.sic.elements.SICFactory;
@@ -23,11 +25,34 @@ public class SofiaImageCode {
     this(basePath, plainCode, false);
   }
 
+  public SofiaImageCode(String plainCode, boolean formatCode) {
+    this(null, plainCode, formatCode);
+  }
+
   public SofiaImageCode(Path basePath, String plainCode, boolean formatCode) {
-    this.basePath = basePath;
-    if (plainCode == null) {
+    if (basePath == null) {
+      String pathName = System.getProperty("java.io.tmpdir");
+      System.out.println("try with " + pathName);
+      this.basePath = Paths.get(pathName);
+      if (this.basePath == null || !Files.exists(this.basePath)) {
+        pathName = System.getProperty("user.dir");
+        System.out.println("try with " + pathName);
+        this.basePath = Paths.get(pathName);
+        if (this.basePath == null || !Files.exists(this.basePath)) {
+          pathName = System.getProperty("user.home");
+          System.out.println("try with " + pathName);
+          this.basePath = Paths.get(pathName);
+        }
+      }
+    } else {
+      this.basePath = basePath;
+    }
+
+    if (plainCode
+            == null) {
       throw new RuntimeException("null string parameter.");
     }
+
     if (plainCode.isBlank()) {
       throw new RuntimeException("Empty code.");
     }
@@ -39,6 +64,7 @@ public class SofiaImageCode {
     tokens = Tokenizer.tokenize(code);
 
     SICFactory sicFactory = new SICFactory();
+
     try {
       sicElement = sicFactory.get(tokens);
     } catch (SICCompileTimeException e) {

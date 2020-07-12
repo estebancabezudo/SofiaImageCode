@@ -69,16 +69,15 @@ public class GrayFunctionObject extends SICObjectFunction {
           if (channelValueParameter == null) {
             throw new SICCompileTimeException("A " + SICColorChannel.TYPE_NAME + " method must have a channel parameter.", token);
           }
-          channelValueParameter = new SICColorChannel(token);
+          channelValueParameter = new SICColorChannel(channelValueParameter.getToken());
           break;
         case SICGrayShades.TYPE_NAME:
           if (valueParameter == null) {
             throw new SICCompileTimeException("A " + SICGrayShades.TYPE_NAME + " method must have a value for the number of shadows.", token);
           }
+          valueParameter = new SICGrayShades(valueParameter.getToken());
           break;
       }
-
-      valueParameter = new SICGrayShades(valueParameter.getToken());
     }
   }
 
@@ -136,11 +135,11 @@ public class GrayFunctionObject extends SICObjectFunction {
         }
         break;
       case "colorChannel":
-        if (methodTypeParameter == null) {
+        if (channelValueParameter == null) {
           throw new RuntimeException("Color chanel MUST have a type parameter.");
         }
-        String colorChannelMethodTypeName = methodTypeParameter.getValue();
-        switch (colorChannelMethodTypeName) {
+        String channelValueParameterName = channelValueParameter.getValue();
+        switch (channelValueParameterName) {
           case "red":
             applyGrayshades(bi, new RedColorChannel());
             break;
@@ -151,7 +150,7 @@ public class GrayFunctionObject extends SICObjectFunction {
             applyGrayshades(bi, new BlueColorChannel());
             break;
           default:
-            throw new RuntimeException("Invalid method type " + colorChannelMethodTypeName + " for colorChannel.");
+            throw new RuntimeException("Invalid method channel " + channelValueParameterName + " for colorChannel.");
         }
         break;
       case "grayShades":

@@ -13,12 +13,12 @@ public class Message {
   private final String message;
   private final Position position;
 
-  Message(String message, Position position) {
+  public Message(String message, Position position) {
     this.message = message;
     this.position = position;
   }
 
-  Message(String message) {
+  public Message(String message) {
     this(message, null);
   }
 

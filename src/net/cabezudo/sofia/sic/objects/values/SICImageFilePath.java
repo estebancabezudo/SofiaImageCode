@@ -26,7 +26,7 @@ public class SICImageFilePath extends SICValue<Path> {
       newImageFileName = newImageFileName.substring(1);
     }
     filePath = basePath.resolve(newImageFileName);
-    Logger.info("File to serarch: %s.", filePath);
+    Logger.info("File to search: %s.", filePath);
     if (!Files.exists(filePath)) {
       throw new SICCompileTimeException("The file " + imageFileName + " do NOT exist.", getToken());
     }
