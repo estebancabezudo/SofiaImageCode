@@ -2,7 +2,6 @@ package net.cabezudo.sofia.sic;
 
 import java.util.ArrayList;
 import java.util.List;
-import net.cabezudo.json.values.JSONArray;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -16,13 +15,13 @@ public class Messages {
     list.add(message);
   }
 
-  public JSONArray toJSON() {
-    JSONArray jsonArray = new JSONArray();
-    list.forEach((message) -> {
-      jsonArray.add(message.toJSON());
-    });
-    return jsonArray;
-  }
+//  public JSONArray toJSON() {
+//    JSONArray jsonArray = new JSONArray();
+//    list.forEach((message) -> {
+//      jsonArray.add(message.toJSON());
+//    });
+//    return jsonArray;
+//  }
 
   public int size() {
     return list.size();

@@ -20,7 +20,7 @@ public class ResizeTest {
   }
 
   private void run(String code) throws SICRuntimeException, SICCompileTimeException {
-    Path resourceDirectory = Paths.get("test", "resources");
+    Path resourceDirectory = Paths.get("src", "test", "resources");
     String resourcesPath = resourceDirectory.toFile().getAbsolutePath();
     Path basePath = Paths.get(resourcesPath);
     SofiaImageCode sofiaImageCode = new SofiaImageCode(basePath, code, true);

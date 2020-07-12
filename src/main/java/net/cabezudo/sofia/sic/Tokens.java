@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import net.cabezudo.json.values.JSONArray;
 import net.cabezudo.sofia.sic.exceptions.EmptyQueueException;
 import net.cabezudo.sofia.sic.tokens.Position;
 import net.cabezudo.sofia.sic.tokens.Token;
@@ -30,13 +29,13 @@ public class Tokens implements Iterable<Token> {
     return sb.toString();
   }
 
-  public JSONArray toJSON() {
-    JSONArray jsonTokens = new JSONArray();
-    list.forEach((token) -> {
-      jsonTokens.add(token.toJSON());
-    });
-    return jsonTokens;
-  }
+//  public JSONArray toJSON() {
+//    JSONArray jsonTokens = new JSONArray();
+//    list.forEach((token) -> {
+//      jsonTokens.add(token.toJSON());
+//    });
+//    return jsonTokens;
+//  }
 
   public String toCode() {
     StringBuilder sb = new StringBuilder();

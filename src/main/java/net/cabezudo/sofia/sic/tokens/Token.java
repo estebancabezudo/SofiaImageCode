@@ -1,8 +1,5 @@
 package net.cabezudo.sofia.sic.tokens;
 
-import net.cabezudo.json.JSONPair;
-import net.cabezudo.json.values.JSONObject;
-
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
  * @version 0.01.00, 2020.06.13
@@ -112,21 +109,21 @@ public abstract class Token {
     return false;
   }
 
-  public JSONObject toJSON() {
-    JSONObject jsonData = new JSONObject();
-    JSONPair jsonValue = new JSONPair("value", getJSONValue());
-    jsonData.add(jsonValue);
-    JSONPair jsonClass;
-    if (isInvalidClass()) {
-      jsonClass = new JSONPair("class", "none");
-    } else {
-      jsonClass = new JSONPair("class", getCSSClass());
-    }
-    jsonData.add(jsonClass);
-    JSONPair jsonError = new JSONPair("error", error);
-    jsonData.add(jsonError);
-    return jsonData;
-  }
+//  public JSONObject toJSON() {
+//    JSONObject jsonData = new JSONObject();
+//    JSONPair jsonValue = new JSONPair("value", getJSONValue());
+//    jsonData.add(jsonValue);
+//    JSONPair jsonClass;
+//    if (isInvalidClass()) {
+//      jsonClass = new JSONPair("class", "none");
+//    } else {
+//      jsonClass = new JSONPair("class", getCSSClass());
+//    }
+//    jsonData.add(jsonClass);
+//    JSONPair jsonError = new JSONPair("error", error);
+//    jsonData.add(jsonError);
+//    return jsonData;
+//  }
 
   public abstract String getCSSClass();
 

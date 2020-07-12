@@ -1,7 +1,5 @@
 package net.cabezudo.sofia.sic;
 
-import net.cabezudo.json.JSONPair;
-import net.cabezudo.json.values.JSONObject;
 import net.cabezudo.sofia.sic.tokens.Position;
 
 /**
@@ -21,14 +19,4 @@ public class Message {
   public Message(String message) {
     this(message, null);
   }
-
-  public JSONObject toJSON() {
-    JSONObject jsonObject = new JSONObject();
-    jsonObject.add(new JSONPair("message", message));
-    if (position != null) {
-      jsonObject.add(new JSONPair("position", position.toJSON()));
-    }
-    return jsonObject;
-  }
-
 }

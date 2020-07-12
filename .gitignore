@@ -9,3 +9,11 @@ sofia.configuration.properties
 varios/
 sql.tests.txt
 **/images/generated
+.gradle/
+build.gradle
+gradle.properties
+gradle/
+gradlew
+gradlew.bat
+settings.gradle
+

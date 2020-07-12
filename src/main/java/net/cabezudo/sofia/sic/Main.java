@@ -2,8 +2,6 @@ package net.cabezudo.sofia.sic;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import net.cabezudo.json.exceptions.JSONParseException;
-import net.cabezudo.json.exceptions.PropertyNotExistException;
 import net.cabezudo.sofia.sic.elements.SICCompileTimeException;
 import net.cabezudo.sofia.sic.elements.SICUnexpectedEndOfCodeException;
 import net.cabezudo.sofia.sic.exceptions.EmptyQueueException;
@@ -16,7 +14,7 @@ import net.cabezudo.sofia.sic.objects.SICRuntimeException;
  */
 public class Main {
 
-  public static void main(String... args) throws EmptyQueueException, JSONParseException, PropertyNotExistException, SICCompileTimeException, SICUnexpectedEndOfCodeException, SICRuntimeException {
+  public static void main(String... args) throws EmptyQueueException, SICCompileTimeException, SICUnexpectedEndOfCodeException, SICRuntimeException {
 //    String code = "main(loadImage(name=/home/esteban/NetBeansProjects/sofia.cabezudo.net/system/sources/sites/manager/1/images/test.jpg),resize(width=300,height=300))";
     //String code = "    main(    loadImage(   name=/home/esteban/NetBeansProjects/sofia.cabezudo.net/system/sources/sites/manager/1/images/test.jpg   )  ,  resize( scale   =   0.5   )   ,   resize(    width   =   1200   , height  =  800  )  )";
     //  String code = "\nmain(\nloadImage(name=/home/esteban/NetBeansProjects/sofia.cabezudo.net/system/sources/sites/manager/1/images/test.jpg),resize(scale=.2),resize(\nwidth=1200, height=800))";
@@ -48,7 +46,7 @@ public class Main {
   }
 
   private static void test(String code) throws SICRuntimeException, SICCompileTimeException {
-    Path resourceDirectory = Paths.get("test", "resources");
+    Path resourceDirectory = Paths.get("src", "test", "resources");
     String resourcesPath = resourceDirectory.toFile().getAbsolutePath();
     Path basePath = Paths.get(resourcesPath);
     SofiaImageCode sofiaImageCode = new SofiaImageCode(basePath, code, true);

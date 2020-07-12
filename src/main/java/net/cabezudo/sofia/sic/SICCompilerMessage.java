@@ -1,7 +1,5 @@
 package net.cabezudo.sofia.sic;
 
-import net.cabezudo.json.JSONPair;
-import net.cabezudo.json.values.JSONObject;
 import net.cabezudo.sofia.sic.tokens.Position;
 
 /**
@@ -18,12 +16,12 @@ public class SICCompilerMessage {
     this.position = position;
   }
 
-  public JSONObject toJSON() {
-    JSONObject jsonMessage = new JSONObject();
-    JSONPair jsonPairMessage = new JSONPair("message", message);
-    jsonMessage.add(jsonPairMessage);
-    JSONPair jsonPairPosition = new JSONPair("position", position.toJSON());
-    jsonMessage.add(jsonPairPosition);
-    return jsonMessage;
-  }
+//  public JSONObject toJSON() {
+//    JSONObject jsonMessage = new JSONObject();
+//    JSONPair jsonPairMessage = new JSONPair("message", message);
+//    jsonMessage.add(jsonPairMessage);
+//    JSONPair jsonPairPosition = new JSONPair("position", position.toJSON());
+//    jsonMessage.add(jsonPairPosition);
+//    return jsonMessage;
+//  }
 }
