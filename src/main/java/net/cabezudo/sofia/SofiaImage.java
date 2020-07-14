@@ -14,8 +14,8 @@ public class SofiaImage {
 
   private final Path imagePath;
   private final BufferedImage image;
-  private int width;
-  private int height;
+  private final int width;
+  private final int height;
 
   public SofiaImage(Path imagePath, BufferedImage image) {
     this.imagePath = imagePath;
@@ -23,10 +23,6 @@ public class SofiaImage {
     this.width = image.getWidth();
     this.height = image.getHeight();
     Logger.debug("[SofiaImage:constructor(Path, BufferedImage)] Create image %s with width %s and height %s.", imagePath, width, height);
-  }
-
-  public SofiaImage(SofiaImage sofiaImage) {
-    this(sofiaImage.getImagePath(), sofiaImage.getImage());
   }
 
   public SofiaImage(Path imagePath) throws IOException {

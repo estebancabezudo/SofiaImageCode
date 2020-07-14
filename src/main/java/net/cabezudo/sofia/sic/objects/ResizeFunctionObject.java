@@ -172,9 +172,7 @@ public class ResizeFunctionObject extends SICObjectFunction {
     g2d.drawImage(sofiaImage.getImage(), 0, 0, width, height, null);
     g2d.dispose();
 
-    SofiaImage newSofiaImage = new SofiaImage(sofiaImage.getImagePath(), newImage);
-    return newSofiaImage;
-
+    return new SofiaImage(sofiaImage.getImagePath(), newImage);
   }
 
 }

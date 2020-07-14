@@ -14,74 +14,98 @@ import org.junit.Test;
 public class GrayTest {
 
   @Test
-  public void happyPathGrayAveragingImage() throws SICRuntimeException, SICCompileTimeException {
+  public void happyPathGrayAveraging() throws SICRuntimeException, SICCompileTimeException {
     String code = "main(loadImage(name=/images/test.600.400.jpg),gray(method=averaging))";
     run(code);
   }
 
   @Test
-  public void happyPathGrayLumaImage() throws SICRuntimeException, SICCompileTimeException {
+  public void happyPathGrayLuma() throws SICRuntimeException, SICCompileTimeException {
     String code = "main(loadImage(name=/images/test.600.400.jpg),gray(method=luma))";
     run(code);
   }
 
   @Test
-  public void happyPathGrayLumaBasicImage() throws SICRuntimeException, SICCompileTimeException {
+  public void happyPathGrayLumaBasic() throws SICRuntimeException, SICCompileTimeException {
     String code = "main(loadImage(name=/images/test.600.400.jpg),gray(method=luma,type=basic))";
     run(code);
   }
 
   @Test
-  public void happyPathGrayLumaBT709Image() throws SICRuntimeException, SICCompileTimeException {
+  public void happyPathGrayLumaBT709() throws SICRuntimeException, SICCompileTimeException {
     String code = "main(loadImage(name=/images/test.600.400.jpg),gray(method=luma,type=bt709))";
     run(code);
   }
 
   @Test
-  public void happyPathGrayLumaBT601Image() throws SICRuntimeException, SICCompileTimeException {
+  public void happyPathGrayLumaBT601() throws SICRuntimeException, SICCompileTimeException {
     String code = "main(loadImage(name=/images/test.600.400.jpg),gray(method=luma,type=bt601))";
     run(code);
   }
 
   @Test
-  public void happyPathGrayDesaturationImage() throws SICRuntimeException, SICCompileTimeException {
+  public void happyPathGrayDesaturation() throws SICRuntimeException, SICCompileTimeException {
     String code = "main(loadImage(name=/images/test.600.400.jpg),gray(method=desaturation))";
     run(code);
   }
 
   @Test
-  public void happyPathGrayDecompositionMaximumImage() throws SICRuntimeException, SICCompileTimeException {
+  public void happyPathGrayDecompositionMaximum() throws SICRuntimeException, SICCompileTimeException {
     String code = "main(loadImage(name=/images/test.600.400.jpg),gray(method=decomposition,type=maximum))";
     run(code);
   }
 
   @Test
-  public void happyPathGrayDecompositionMinimumImage() throws SICRuntimeException, SICCompileTimeException {
+  public void happyPathGrayDecompositionMinimum() throws SICRuntimeException, SICCompileTimeException {
     String code = "main(loadImage(name=/images/test.600.400.jpg),gray(method=decomposition,type=minimum))";
     run(code);
   }
 
   @Test
-  public void happyPathGrayColorChannelRedImage() throws SICRuntimeException, SICCompileTimeException {
+  public void happyPathGrayColorChannelRed() throws SICRuntimeException, SICCompileTimeException {
     String code = "main(loadImage(name=/images/test.600.400.jpg),gray(method=colorChannel,channel=red))";
     run(code);
   }
 
   @Test
-  public void happyPathGrayColorChannelGreenImage() throws SICRuntimeException, SICCompileTimeException {
+  public void happyPathGrayColorChannelGreen() throws SICRuntimeException, SICCompileTimeException {
     String code = "main(loadImage(name=/images/test.600.400.jpg),gray(method=colorChannel,channel=green))";
     run(code);
   }
 
   @Test
-  public void happyPathGrayColorChannelBlueImage() throws SICRuntimeException, SICCompileTimeException {
+  public void happyPathGrayColorChannelBlue() throws SICRuntimeException, SICCompileTimeException {
     String code = "main(loadImage(name=/images/test.600.400.jpg),gray(method=colorChannel,channel=blue))";
     run(code);
   }
 
+  @Test(expected = SICCompileTimeException.class)
+  public void grayColorChannelWhitoutChannelParameter() throws SICRuntimeException, SICCompileTimeException {
+    String code = "main(loadImage(name=/images/test.600.400.jpg),gray(method=colorChannel))";
+    run(code);
+  }
+
   @Test
-  public void happyPathGrayGrayShadesImage() throws SICRuntimeException, SICCompileTimeException {
+  public void happyPathGrayGrayShades() throws SICRuntimeException, SICCompileTimeException {
     String code = "main(loadImage(name=/images/test.600.400.jpg),gray(method=grayShades,value=30))";
+    run(code);
+  }
+
+  @Test(expected = SICCompileTimeException.class)
+  public void grayUnexpectedFunction() throws SICRuntimeException, SICCompileTimeException {
+    String code = "main(loadImage(name=/images/test.600.400.jpg),gray(gray()))";
+    run(code);
+  }
+
+  @Test(expected = SICCompileTimeException.class)
+  public void grayUnexpectedParameter() throws SICRuntimeException, SICCompileTimeException {
+    String code = "main(loadImage(name=/images/test.600.400.jpg),gray(width=3))";
+    run(code);
+  }
+
+  @Test(expected = SICCompileTimeException.class)
+  public void grayGrayShadesWhitoutValue() throws SICRuntimeException, SICCompileTimeException {
+    String code = "main(loadImage(name=/images/test.600.400.jpg),gray(method=grayShades))";
     run(code);
   }
 

@@ -36,9 +36,6 @@ public class MainFunctionObject extends SICObjectFunction {
 
   @Override
   public SofiaImage run(SofiaImage ignoredImage) throws SICRuntimeException {
-    if (ignoredImage != null) {
-      Logger.warning("[MainFunctionObject:run] Invalid image on parameter: %s", ignoredImage.getImagePath());
-    }
     SofiaImage sofiaImage = null;
     for (SICObject sicObject : list) {
       sofiaImage = sicObject.run(sofiaImage);

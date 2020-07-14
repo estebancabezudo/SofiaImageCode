@@ -36,10 +36,9 @@ public class Tokens implements Iterable<Token> {
 //    });
 //    return jsonTokens;
 //  }
-
   public String toCode() {
     StringBuilder sb = new StringBuilder();
-    list.forEach((token) -> {
+    list.forEach(token -> {
       sb.append(token.getValue());
     });
     return sb.toString();

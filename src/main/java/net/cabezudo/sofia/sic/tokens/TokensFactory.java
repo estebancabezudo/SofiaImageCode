@@ -26,8 +26,6 @@ public class TokensFactory {
 
   public static Token get(String s, Position position) {
     switch (s.length()) {
-      case 0:
-        throw new RuntimeException("Zero length token.");
       case 1:
         switch (s) {
           case "\n":

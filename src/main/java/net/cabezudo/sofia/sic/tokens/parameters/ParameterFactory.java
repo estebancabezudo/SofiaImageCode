@@ -10,6 +10,10 @@ import net.cabezudo.sofia.sic.tokens.Token;
  */
 public class ParameterFactory {
 
+  private ParameterFactory() {
+    // Nothing to do here
+  }
+
   public static SICParameter get(Token nameToken, Token valueToken) throws InvalidParameterNameException {
     switch (nameToken.getValue()) {
       case "aspect":

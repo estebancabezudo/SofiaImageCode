@@ -11,17 +11,11 @@ import org.junit.Test;
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
  * @version 0.01.00, 2020.07.10
  */
-public class ResizeTest {
+public class MainFunctionTest {
 
-  @Test
+  @Test(expected=SICCompileTimeException.class)
   public void happyPathResizeImage() throws SICRuntimeException, SICCompileTimeException {
-    String code = "main(loadImage(name=/images/test.600.400.jpg),resize(width=60,height=40),resize(width=30%,height=20%))";
-    run(code);
-  }
-
-  @Test(expected = SICCompileTimeException.class)
-  public void resizeInvalidParameterValue() throws SICRuntimeException, SICCompileTimeException {
-    String code = "main(loadImage(name=/images/test.600.400.jpg),resize(width=bad,height=40))";
+    String code = "main(height=40)";
     run(code);
   }
 

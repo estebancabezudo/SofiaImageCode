@@ -15,14 +15,6 @@ public class Messages {
     list.add(message);
   }
 
-//  public JSONArray toJSON() {
-//    JSONArray jsonArray = new JSONArray();
-//    list.forEach((message) -> {
-//      jsonArray.add(message.toJSON());
-//    });
-//    return jsonArray;
-//  }
-
   public int size() {
     return list.size();
   }
