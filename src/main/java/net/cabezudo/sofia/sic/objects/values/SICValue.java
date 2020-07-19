@@ -1,7 +1,8 @@
 package net.cabezudo.sofia.sic.objects.values;
 
+import net.cabezudo.sofia.sic.exceptions.InvalidParameterException;
 import net.cabezudo.sofia.sic.tokens.Position;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -10,17 +11,17 @@ import net.cabezudo.sofia.sic.tokens.Token;
  */
 public abstract class SICValue<T> {
 
-  private final Token token;
+  private final SICToken token;
   private T value;
 
-  public SICValue(Token token) {
+  public SICValue(SICToken token) {
     if (token == null) {
       throw new InvalidParameterException("Invalid null parameter.");
     }
     this.token = token;
   }
 
-  public Token getToken() {
+  public SICToken getToken() {
     return token;
   }
 

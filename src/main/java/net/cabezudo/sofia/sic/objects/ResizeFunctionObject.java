@@ -16,7 +16,7 @@ import net.cabezudo.sofia.sic.objects.values.SICAspect;
 import net.cabezudo.sofia.sic.objects.values.SICHeight;
 import net.cabezudo.sofia.sic.objects.values.SICScale;
 import net.cabezudo.sofia.sic.objects.values.SICWidth;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -30,7 +30,7 @@ public class ResizeFunctionObject extends SICObjectFunction {
   private SICScale scaleParameter;
   private SICAspect aspectParameter;
 
-  public ResizeFunctionObject(Path basePath, Token token, SICParameters parameters) throws SICCompileTimeException {
+  public ResizeFunctionObject(Path basePath, SICToken token, SICParameters parameters) throws SICCompileTimeException {
     this.list = new ArrayList<>();
 
     SICElement parameterOrFunction = parameters.consume();
@@ -39,7 +39,7 @@ public class ResizeFunctionObject extends SICObjectFunction {
         SICParameter parameter = (SICParameter) parameterOrFunction;
         SICParameter parameterNameToken = parameter;
         String parameterName = parameter.getName();
-        Token parameterValue = parameter.getValueToken();
+        SICToken parameterValue = parameter.getValueToken();
         switch (parameterName) {
           case "width":
             if (scaleParameter != null) {

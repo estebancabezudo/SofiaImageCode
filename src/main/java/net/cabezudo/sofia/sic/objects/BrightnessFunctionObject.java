@@ -12,7 +12,7 @@ import net.cabezudo.sofia.sic.elements.SICParameter;
 import net.cabezudo.sofia.sic.elements.SICParameters;
 import net.cabezudo.sofia.sic.objects.values.SICColorModel;
 import net.cabezudo.sofia.sic.objects.values.SICInteger;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -24,7 +24,7 @@ public class BrightnessFunctionObject extends SICObjectFunction {
   private SICInteger valueParameter;
   private SICColorModel modelParameter;
 
-  public BrightnessFunctionObject(Path basePath, Token token, SICParameters parameters) throws SICCompileTimeException {
+  public BrightnessFunctionObject(Path basePath, SICToken token, SICParameters parameters) throws SICCompileTimeException {
     this.list = new ArrayList<>();
 
     SICElement parameterOrFunction = parameters.consume();
@@ -33,7 +33,7 @@ public class BrightnessFunctionObject extends SICObjectFunction {
         SICParameter parameter = (SICParameter) parameterOrFunction;
         SICParameter parameterNameToken = parameter;
         String parameterName = parameter.getName();
-        Token parameterValue = parameter.getValueToken();
+        SICToken parameterValue = parameter.getValueToken();
         switch (parameterName) {
           case "value":
             valueParameter = new SICInteger(parameterValue);

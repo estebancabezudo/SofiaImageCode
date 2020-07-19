@@ -7,6 +7,7 @@ import net.cabezudo.sofia.sic.elements.SICCompileTimeException;
 import net.cabezudo.sofia.sic.elements.SICElement;
 import net.cabezudo.sofia.sic.elements.SICFactory;
 import net.cabezudo.sofia.sic.elements.SICUnexpectedEndOfCodeException;
+import net.cabezudo.sofia.sic.exceptions.InvalidParameterException;
 import net.cabezudo.sofia.sic.objects.SICObject;
 
 /**
@@ -15,11 +16,10 @@ import net.cabezudo.sofia.sic.objects.SICObject;
  */
 public class SofiaImageCode {
 
-  private Tokens tokens;
-  private SICElement sicElement;
+  private SICTokens tokens;
   private final String code;
   private Path basePath;
-  private Messages messages = new Messages();
+  private SICElement sicElement;
 
   public SofiaImageCode(Path basePath, String plainCode) {
     this(basePath, plainCode, false);
@@ -32,15 +32,12 @@ public class SofiaImageCode {
   public SofiaImageCode(Path basePath, String plainCode, boolean formatCode) {
     if (basePath == null) {
       String pathName = System.getProperty("java.io.tmpdir");
-      System.out.println("try with " + pathName);
       this.basePath = Paths.get(pathName);
       if (this.basePath == null || !Files.exists(this.basePath)) {
         pathName = System.getProperty("user.dir");
-        System.out.println("try with " + pathName);
         this.basePath = Paths.get(pathName);
         if (this.basePath == null || !Files.exists(this.basePath)) {
           pathName = System.getProperty("user.home");
-          System.out.println("try with " + pathName);
           this.basePath = Paths.get(pathName);
         }
       }
@@ -48,13 +45,12 @@ public class SofiaImageCode {
       this.basePath = basePath;
     }
 
-    if (plainCode
-            == null) {
-      throw new RuntimeException("null string parameter.");
+    if (plainCode == null) {
+      throw new InvalidParameterException("null string parameter.");
     }
 
     if (plainCode.isBlank()) {
-      throw new RuntimeException("Empty code.");
+      throw new InvalidParameterException("Empty code.");
     }
     if (formatCode) {
       code = formatCode(plainCode);
@@ -62,28 +58,20 @@ public class SofiaImageCode {
       code = plainCode;
     }
     tokens = Tokenizer.tokenize(code);
-
-    SICFactory sicFactory = new SICFactory();
-
-    try {
-      sicElement = sicFactory.get(tokens);
-    } catch (SICCompileTimeException e) {
-      messages.add(new Message(e.getMessage(), e.getPosition()));
-    } catch (SICUnexpectedEndOfCodeException e) {
-      messages.add(new Message(e.getMessage()));
-    }
   }
 
-  public Tokens getTokens() {
+  public SICElement parse() throws SICCompileTimeException, SICUnexpectedEndOfCodeException {
+    SICFactory sicFactory = new SICFactory();
+    sicElement = sicFactory.get(tokens);
+    return sicElement;
+  }
+
+  public SICTokens getTokens() {
     return tokens;
   }
 
   public SICObject compile() throws SICCompileTimeException {
-    if (sicElement == null) {
-      return null;
-    }
-    SICObject sicObject = sicElement.compile(basePath);
-    return sicObject;
+    return sicElement.compile(basePath);
   }
 
   public String getShortCode() {
@@ -134,9 +122,5 @@ public class SofiaImageCode {
       }
     }
     return sb;
-  }
-
-  public Messages getMessages() {
-    return messages;
   }
 }

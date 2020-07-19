@@ -1,10 +1,10 @@
 package net.cabezudo.sofia.sic.elements;
 
-import net.cabezudo.sofia.sic.Tokens;
+import net.cabezudo.sofia.sic.SICTokens;
 import net.cabezudo.sofia.sic.exceptions.EmptyQueueException;
 import net.cabezudo.sofia.sic.exceptions.InvalidParameterNameException;
 import net.cabezudo.sofia.sic.tokens.Position;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 import net.cabezudo.sofia.sic.tokens.parameters.ParameterFactory;
 
 /**
@@ -13,8 +13,8 @@ import net.cabezudo.sofia.sic.tokens.parameters.ParameterFactory;
  */
 public class SICFactory {
 
-  public SICElement get(Tokens tokens) throws SICCompileTimeException, SICUnexpectedEndOfCodeException {
-    Token token;
+  public SICElement get(SICTokens tokens) throws SICCompileTimeException, SICUnexpectedEndOfCodeException {
+    SICToken token;
     try {
       consumeSpaces(tokens);
       token = tokens.consume();
@@ -33,7 +33,7 @@ public class SICFactory {
     }
     try {
       consumeSpaces(tokens);
-      Token remainToken = tokens.peek();
+      SICToken remainToken = tokens.peek();
       if (remainToken != null) {
         remainToken.setInvalidClass(true);
         remainToken.setError(true);
@@ -45,7 +45,7 @@ public class SICFactory {
     return mainFunction;
   }
 
-  private SICElement get(Token token, Tokens tokens) throws SICCompileTimeException, EmptyQueueException {
+  private SICElement get(SICToken token, SICTokens tokens) throws SICCompileTimeException, EmptyQueueException {
 
     Position position;
 
@@ -57,36 +57,36 @@ public class SICFactory {
     throw new SICCompileTimeException("Unexpected value " + token.getValue() + ".", token);
   }
 
-  private void consumeSpaces(Tokens tokens) throws EmptyQueueException {
-    Token token = tokens.peek();
+  private void consumeSpaces(SICTokens tokens) throws EmptyQueueException {
+    SICToken token = tokens.peek();
     while (token != null && (token.isSpace() || token.isNewLine() || token.isTabulation())) {
       tokens.consume();
       token = tokens.peek();
     }
   }
 
-  private SICElement createSICFunction(Token token, Tokens tokens) throws SICCompileTimeException, EmptyQueueException {
+  private SICElement createSICFunction(SICToken token, SICTokens tokens) throws SICCompileTimeException, EmptyQueueException {
     SICFunction sicFunction = new SICFunction(token);
-    Token openParentheses = tokens.consume();
+    SICToken openParentheses = tokens.consume();
     if (!openParentheses.isOpenParentheses()) {
       openParentheses.setError(true);
       throw new SICCompileTimeException("Unexpected token '" + openParentheses.getDescription() + "'. Must be a open parentheses.", openParentheses);
     }
 
-    Token separatorOrCloseParentheses;
+    SICToken separatorOrCloseParentheses;
     do {
       consumeSpaces(tokens);
-      Token parameterNameOrFunction = tokens.consume();
+      SICToken parameterNameOrFunction = tokens.consume();
 
       if (parameterNameOrFunction.isParameterName()) {
         consumeSpaces(tokens);
-        Token equal = tokens.consume();
+        SICToken equal = tokens.consume();
         if (!equal.isEqual()) {
           equal.setError(true);
           throw new SICCompileTimeException("Unexpected token '" + equal.getDescription() + "'. Must be a equal.", equal);
         }
         consumeSpaces(tokens);
-        Token parameterValue = tokens.consume();
+        SICToken parameterValue = tokens.consume();
         consumeSpaces(tokens);
         separatorOrCloseParentheses = tokens.consume();
         if (!separatorOrCloseParentheses.isComma() && !separatorOrCloseParentheses.isCloseParentheses()) {

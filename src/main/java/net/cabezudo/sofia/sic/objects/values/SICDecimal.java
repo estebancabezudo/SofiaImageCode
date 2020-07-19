@@ -2,7 +2,7 @@ package net.cabezudo.sofia.sic.objects.values;
 
 import java.math.BigDecimal;
 import net.cabezudo.sofia.sic.elements.SICCompileTimeException;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -13,7 +13,7 @@ public class SICDecimal extends SICNumber<BigDecimal> {
   private final BigDecimal value;
   private boolean isDecimal;
 
-  public SICDecimal(Token token) throws SICCompileTimeException {
+  public SICDecimal(SICToken token) throws SICCompileTimeException {
     super(token);
     try {
       value = new BigDecimal(getToken().getValue());

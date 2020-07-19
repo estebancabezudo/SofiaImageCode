@@ -1,6 +1,6 @@
 package net.cabezudo.sofia.sic.objects.values;
 
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -8,7 +8,7 @@ import net.cabezudo.sofia.sic.tokens.Token;
  */
 public class SICString extends SICValue<String> {
 
-  public SICString(Token token) {
+  public SICString(SICToken token) {
     super(token);
   }
 

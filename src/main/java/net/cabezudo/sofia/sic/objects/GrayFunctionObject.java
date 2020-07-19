@@ -15,7 +15,7 @@ import net.cabezudo.sofia.sic.objects.values.SICGrayMethodType;
 import net.cabezudo.sofia.sic.objects.values.SICGrayShades;
 import net.cabezudo.sofia.sic.objects.values.SICInteger;
 import net.cabezudo.sofia.sic.objects.values.SICString;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -29,7 +29,7 @@ public class GrayFunctionObject extends SICObjectFunction {
   private SICInteger valueParameter;
   private SICString channelValueParameter;
 
-  public GrayFunctionObject(Path basePath, Token token, SICParameters parameters) throws SICCompileTimeException {
+  public GrayFunctionObject(Path basePath, SICToken token, SICParameters parameters) throws SICCompileTimeException {
     this.list = new ArrayList<>();
 
     SICElement parameterOrFunction = parameters.consume();
@@ -38,7 +38,7 @@ public class GrayFunctionObject extends SICObjectFunction {
         SICParameter parameter = (SICParameter) parameterOrFunction;
         SICParameter parameterNameToken = parameter;
         String parameterName = parameter.getName();
-        Token parameterValue = parameter.getValueToken();
+        SICToken parameterValue = parameter.getValueToken();
         switch (parameterName) {
           case "method":
             methodParameter = new SICGrayMethod(parameterValue);

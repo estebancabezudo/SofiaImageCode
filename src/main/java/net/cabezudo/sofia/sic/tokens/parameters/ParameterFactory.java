@@ -2,7 +2,7 @@ package net.cabezudo.sofia.sic.tokens.parameters;
 
 import net.cabezudo.sofia.sic.elements.SICParameter;
 import net.cabezudo.sofia.sic.exceptions.InvalidParameterNameException;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -14,7 +14,7 @@ public class ParameterFactory {
     // Nothing to do here
   }
 
-  public static SICParameter get(Token nameToken, Token valueToken) throws InvalidParameterNameException {
+  public static SICParameter get(SICToken nameToken, SICToken valueToken) throws InvalidParameterNameException {
     switch (nameToken.getValue()) {
       case "aspect":
         return new AspectParameter(nameToken, valueToken);

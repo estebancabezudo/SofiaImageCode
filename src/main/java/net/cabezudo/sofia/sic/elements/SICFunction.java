@@ -4,8 +4,7 @@ import java.nio.file.Path;
 import net.cabezudo.sofia.sic.Utils;
 import net.cabezudo.sofia.sic.objects.ObjectFactory;
 import net.cabezudo.sofia.sic.objects.SICObject;
-import net.cabezudo.sofia.sic.objects.SICObjectFunction;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -15,7 +14,7 @@ public class SICFunction extends SICParameterOrFunction {
 
   private final SICParameters parameters = new SICParameters();
 
-  public SICFunction(Token token) {
+  public SICFunction(SICToken token) {
     super(token.getValue(), token);
   }
 
@@ -50,7 +49,6 @@ public class SICFunction extends SICParameterOrFunction {
 
   @Override
   public SICObject compile(Path basePath) throws SICCompileTimeException {
-    SICObjectFunction sicObjectFunction = ObjectFactory.get(basePath, getToken(), parameters);
-    return sicObjectFunction;
+    return ObjectFactory.get(basePath, getToken(), parameters);
   }
 }

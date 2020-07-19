@@ -40,11 +40,11 @@ public class LoadImageFunctionObject extends SICObjectFunction {
   @Override
   public SofiaImage run(SofiaImage ignoredImage) throws SICRuntimeException {
     if (ignoredImage != null) {
-      Logger.warning("[CreateImageFunctionObject:run] Invalid image on parameter: %s", ignoredImage.getImagePath());
+      Logger.warning("Invalid image on parameter: %s", ignoredImage.getImagePath());
     }
     SofiaImage sofiaImage;
     Path filePath = imageFilePath.getValue();
-    Logger.debug("[CreateImageFunctionObject:run] Create file path %s.", filePath);
+    Logger.debug("Create file path %s.", filePath);
     try {
       sofiaImage = new SofiaImage(filePath);
       return sofiaImage;

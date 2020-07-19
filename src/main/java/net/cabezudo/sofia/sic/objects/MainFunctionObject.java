@@ -4,7 +4,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import net.cabezudo.sofia.SofiaImage;
-import net.cabezudo.sofia.logger.Logger;
 import net.cabezudo.sofia.sic.elements.SICCompileTimeException;
 import net.cabezudo.sofia.sic.elements.SICElement;
 import net.cabezudo.sofia.sic.elements.SICFunction;

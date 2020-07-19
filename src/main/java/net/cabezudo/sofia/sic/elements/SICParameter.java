@@ -1,7 +1,7 @@
 package net.cabezudo.sofia.sic.elements;
 
 import net.cabezudo.sofia.sic.Utils;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -9,10 +9,10 @@ import net.cabezudo.sofia.sic.tokens.Token;
  */
 public abstract class SICParameter extends SICParameterOrFunction {
 
-  private final Token name;
-  private final Token value;
+  private final SICToken name;
+  private final SICToken value;
 
-  public SICParameter(Token name, Token value) {
+  public SICParameter(SICToken name, SICToken value) {
     super(name.getValue(), name);
     this.name = name;
     this.value = value;
@@ -55,11 +55,11 @@ public abstract class SICParameter extends SICParameterOrFunction {
     return false;
   }
 
-  public Token getNameToken() {
+  public SICToken getNameToken() {
     return name;
   }
 
-  public Token getValueToken() {
+  public SICToken getValueToken() {
     return value;
   }
 

@@ -4,14 +4,14 @@ package net.cabezudo.sofia.sic.tokens;
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
  * @version 0.01.00, 2020.06.13
  */
-public abstract class Token {
+public abstract class SICToken {
 
   private final Position position;
   private final String value;
   private boolean error = false;
   private boolean invalidClass = false;
 
-  public Token(String value, Position position) {
+  public SICToken(String value, Position position) {
     this.value = value;
     this.position = position;
   }
@@ -54,10 +54,6 @@ public abstract class Token {
   }
 
   public String getValue() {
-    return value;
-  }
-
-  public String getJSONValue() {
     return value;
   }
 
@@ -108,22 +104,6 @@ public abstract class Token {
   public boolean isSpace() {
     return false;
   }
-
-//  public JSONObject toJSON() {
-//    JSONObject jsonData = new JSONObject();
-//    JSONPair jsonValue = new JSONPair("value", getJSONValue());
-//    jsonData.add(jsonValue);
-//    JSONPair jsonClass;
-//    if (isInvalidClass()) {
-//      jsonClass = new JSONPair("class", "none");
-//    } else {
-//      jsonClass = new JSONPair("class", getCSSClass());
-//    }
-//    jsonData.add(jsonClass);
-//    JSONPair jsonError = new JSONPair("error", error);
-//    jsonData.add(jsonError);
-//    return jsonData;
-//  }
 
   public abstract String getCSSClass();
 

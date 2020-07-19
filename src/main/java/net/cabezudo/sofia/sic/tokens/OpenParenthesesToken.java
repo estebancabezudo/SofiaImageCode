@@ -4,7 +4,7 @@ package net.cabezudo.sofia.sic.tokens;
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
  * @version 0.01.00, 2020.06.13
  */
-public class OpenParenthesesToken extends Token {
+public class OpenParenthesesToken extends SICToken {
 
   public OpenParenthesesToken(Position position) {
     super("(", position);

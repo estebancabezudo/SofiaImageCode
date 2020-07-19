@@ -1,7 +1,7 @@
 package net.cabezudo.sofia.sic.objects.values;
 
 import net.cabezudo.sofia.sic.elements.SICCompileTimeException;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -11,7 +11,7 @@ public class SICColorChannel extends SICString {
 
   public static final String TYPE_NAME = "colorChannel";
 
-  public SICColorChannel(Token token) throws SICCompileTimeException {
+  public SICColorChannel(SICToken token) throws SICCompileTimeException {
     super(token);
     switch (token.getValue()) {
       case "red":

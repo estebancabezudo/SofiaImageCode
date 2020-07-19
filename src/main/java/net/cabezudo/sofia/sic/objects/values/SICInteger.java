@@ -1,7 +1,7 @@
 package net.cabezudo.sofia.sic.objects.values;
 
 import net.cabezudo.sofia.sic.elements.SICCompileTimeException;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -11,7 +11,7 @@ public class SICInteger extends SICNumber<Integer> {
 
   private final Integer value;
 
-  public SICInteger(Token token) throws SICCompileTimeException {
+  public SICInteger(SICToken token) throws SICCompileTimeException {
     super(token);
     try {
       value = Integer.parseInt(getToken().getValue());
@@ -20,7 +20,7 @@ public class SICInteger extends SICNumber<Integer> {
     }
   }
 
-  public SICInteger(Token token, int min, int max) throws SICCompileTimeException {
+  public SICInteger(SICToken token, int min, int max) throws SICCompileTimeException {
     this(token);
     if (value < min) {
       throw new SICCompileTimeException("Parameter value too small. Must be greater or equal than " + min + ".", getToken());

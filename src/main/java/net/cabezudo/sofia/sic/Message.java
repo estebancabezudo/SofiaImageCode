@@ -8,15 +8,23 @@ import net.cabezudo.sofia.sic.tokens.Position;
  */
 public class Message {
 
-  private final String message;
+  private final String text;
   private final Position position;
 
   public Message(String message, Position position) {
-    this.message = message;
+    this.text = message;
     this.position = position;
   }
 
   public Message(String message) {
     this(message, null);
+  }
+
+  public String getText() {
+    return text;
+  }
+
+  public Position getPosition() {
+    return position;
   }
 }

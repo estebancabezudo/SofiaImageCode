@@ -3,7 +3,7 @@ package net.cabezudo.sofia.sic.tokens.parameters;
 import java.nio.file.Path;
 import net.cabezudo.sofia.sic.elements.SICParameter;
 import net.cabezudo.sofia.sic.objects.SICObject;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -11,7 +11,7 @@ import net.cabezudo.sofia.sic.tokens.Token;
  */
 public class ValueParameter extends SICParameter {
 
-  public ValueParameter(Token name, Token value) {
+  public ValueParameter(SICToken name, SICToken value) {
     super(name, value);
   }
 

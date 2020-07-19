@@ -4,7 +4,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import net.cabezudo.sofia.logger.Logger;
 import net.cabezudo.sofia.sic.elements.SICCompileTimeException;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.exceptions.SICRuntimeException;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -14,11 +15,11 @@ public class SICImageFilePath extends SICValue<Path> {
 
   private Path filePath;
 
-  public SICImageFilePath(Path basePath, Token token) throws SICCompileTimeException {
+  public SICImageFilePath(Path basePath, SICToken token) throws SICCompileTimeException {
     super(token);
     String imageFileName = getToken().getValue();
     if (basePath == null) {
-      throw new RuntimeException("The image base path IS NOT defined.");
+      throw new SICRuntimeException("The image base path IS NOT defined.");
     }
     String newImageFileName = imageFileName; // Just for show the old path in the error.
     while (newImageFileName.startsWith("/")) {

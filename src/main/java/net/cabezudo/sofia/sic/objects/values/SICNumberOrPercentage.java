@@ -2,7 +2,7 @@ package net.cabezudo.sofia.sic.objects.values;
 
 import java.math.BigDecimal;
 import net.cabezudo.sofia.sic.elements.SICCompileTimeException;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -15,7 +15,7 @@ public class SICNumberOrPercentage extends SICValue<BigDecimal> {
   private boolean isPercentage = false;
   private boolean isDecimal;
 
-  public SICNumberOrPercentage(Token token) throws SICCompileTimeException {
+  public SICNumberOrPercentage(SICToken token) throws SICCompileTimeException {
     super(token);
     try {
       String sValue = getToken().getValue();

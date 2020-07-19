@@ -7,18 +7,18 @@ import java.util.List;
 import java.util.Queue;
 import net.cabezudo.sofia.sic.exceptions.EmptyQueueException;
 import net.cabezudo.sofia.sic.tokens.Position;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
  * @version 0.01.00, 2020.06.13
  */
-public class Tokens implements Iterable<Token> {
+public class SICTokens implements Iterable<SICToken> {
 
   private Position position;
-  private final List<Token> list = new ArrayList<>();
-  private final Queue<Token> queue = new LinkedList<>();
-  private Token lastToken;
+  private final List<SICToken> list = new ArrayList<>();
+  private final Queue<SICToken> queue = new LinkedList<>();
+  private SICToken lastToken;
 
   @Override
   public String toString() {
@@ -29,13 +29,6 @@ public class Tokens implements Iterable<Token> {
     return sb.toString();
   }
 
-//  public JSONArray toJSON() {
-//    JSONArray jsonTokens = new JSONArray();
-//    list.forEach((token) -> {
-//      jsonTokens.add(token.toJSON());
-//    });
-//    return jsonTokens;
-//  }
   public String toCode() {
     StringBuilder sb = new StringBuilder();
     list.forEach(token -> {
@@ -44,7 +37,7 @@ public class Tokens implements Iterable<Token> {
     return sb.toString();
   }
 
-  public boolean add(Token token) {
+  public boolean add(SICToken token) {
     if (token == null || token.isEmpty()) {
       return false;
     }
@@ -57,11 +50,11 @@ public class Tokens implements Iterable<Token> {
     return queue.offer(token);
   }
 
-  public Token element() {
+  public SICToken element() {
     return queue.element();
   }
 
-  public Token peek() throws EmptyQueueException {
+  public SICToken peek() throws EmptyQueueException {
     return queue.peek();
   }
 
@@ -73,8 +66,8 @@ public class Tokens implements Iterable<Token> {
     return queue.size() > 0;
   }
 
-  public Token consume() throws EmptyQueueException {
-    Token token = queue.poll();
+  public SICToken consume() throws EmptyQueueException {
+    SICToken token = queue.poll();
     if (token == null) {
       lastToken.setError(true);
       throw new EmptyQueueException(lastToken.getEndPosition());
@@ -84,7 +77,7 @@ public class Tokens implements Iterable<Token> {
   }
 
   @Override
-  public Iterator<Token> iterator() {
+  public Iterator<SICToken> iterator() {
     return list.iterator();
   }
 }

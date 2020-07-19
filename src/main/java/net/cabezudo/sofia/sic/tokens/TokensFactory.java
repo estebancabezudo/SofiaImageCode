@@ -14,17 +14,17 @@ import net.cabezudo.sofia.sic.tokens.functions.ResizeFunctionToken;
  */
 public class TokensFactory {
 
-  public static Token get(StringBuilder sb, Position position) {
-    Token token = get(sb.toString(), position);
+  public static SICToken get(StringBuilder sb, Position position) {
+    SICToken token = get(sb.toString(), position);
     return token;
   }
 
-  public static Token get(char c, Position position) {
-    Token token = get(Character.toString(c), position);
+  public static SICToken get(char c, Position position) {
+    SICToken token = get(Character.toString(c), position);
     return token;
   }
 
-  public static Token get(String s, Position position) {
+  public static SICToken get(String s, Position position) {
     switch (s.length()) {
       case 1:
         switch (s) {

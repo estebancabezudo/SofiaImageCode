@@ -1,7 +1,7 @@
 package net.cabezudo.sofia.sic.objects.values;
 
 import net.cabezudo.sofia.sic.elements.SICCompileTimeException;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -11,7 +11,7 @@ public class SICPercentage extends SICInteger {
 
   private final Integer value;
 
-  public SICPercentage(Token token) throws SICCompileTimeException {
+  public SICPercentage(SICToken token) throws SICCompileTimeException {
     super(token);
     try {
       value = Integer.parseInt(getToken().getValue());

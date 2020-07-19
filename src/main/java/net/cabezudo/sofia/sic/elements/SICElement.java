@@ -2,7 +2,7 @@ package net.cabezudo.sofia.sic.elements;
 
 import java.nio.file.Path;
 import net.cabezudo.sofia.sic.objects.SICObject;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>
@@ -10,13 +10,13 @@ import net.cabezudo.sofia.sic.tokens.Token;
  */
 public abstract class SICElement {
 
-  private final Token token;
+  private final SICToken token;
 
-  public SICElement(Token token) {
+  public SICElement(SICToken token) {
     this.token = token;
   }
 
-  public Token getToken() {
+  public SICToken getToken() {
     return token;
   }
 

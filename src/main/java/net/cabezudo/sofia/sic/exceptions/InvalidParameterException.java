@@ -1,4 +1,4 @@
-package net.cabezudo.sofia.sic.objects.values;
+package net.cabezudo.sofia.sic.exceptions;
 
 /**
  * @author <a href="http://cabezudo.net">Esteban Cabezudo</a>

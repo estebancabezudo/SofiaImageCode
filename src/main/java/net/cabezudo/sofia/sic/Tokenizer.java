@@ -1,7 +1,7 @@
 package net.cabezudo.sofia.sic;
 
 import net.cabezudo.sofia.sic.tokens.Position;
-import net.cabezudo.sofia.sic.tokens.Token;
+import net.cabezudo.sofia.sic.tokens.SICToken;
 import net.cabezudo.sofia.sic.tokens.TokensFactory;
 
 /**
@@ -11,9 +11,9 @@ import net.cabezudo.sofia.sic.tokens.TokensFactory;
 public class Tokenizer {
 
   @SuppressWarnings("fallthrough")
-  public static Tokens tokenize(String code) {
+  public static SICTokens tokenize(String code) {
     char[] chars = code.toCharArray();
-    Tokens tokens = new Tokens();
+    SICTokens tokens = new SICTokens();
     boolean isString = false;
     StringBuilder sb = new StringBuilder();
 
@@ -37,7 +37,7 @@ public class Tokenizer {
           if (c == '"') {
             sb.append(c);
             isString = false;
-            Token token = TokensFactory.get(sb, position);
+            SICToken token = TokensFactory.get(sb, position);
             position = new Position(line, row);
             tokens.add(token);
             sb = new StringBuilder();
@@ -62,11 +62,11 @@ public class Tokenizer {
           case ')':
           case '=':
             if (sb.length() > 0) {
-              Token token = TokensFactory.get(sb, position);
+              SICToken token = TokensFactory.get(sb, position);
               tokens.add(token);
               position = new Position(line, row);
             }
-            Token token = TokensFactory.get(c, position);
+            SICToken token = TokensFactory.get(c, position);
             tokens.add(token);
             position = new Position(line, row + 1);
             sb = new StringBuilder();
@@ -78,7 +78,7 @@ public class Tokenizer {
       }
     }
     if (sb.length() > 0) {
-      Token token = TokensFactory.get(sb, position);
+      SICToken token = TokensFactory.get(sb, position);
       tokens.add(token);
     }
     return tokens;
