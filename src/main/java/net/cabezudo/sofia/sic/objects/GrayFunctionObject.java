@@ -112,7 +112,7 @@ public class GrayFunctionObject extends SICObjectFunction {
             applyGrayshades(bi, new BT601Luma());
             break;
           default:
-            throw new RuntimeException("Invalid method type name " + lumaMethodTypeName + ".");
+            throw new UnexpectedValueException("Invalid method type name " + lumaMethodTypeName + ".");
         }
         break;
       case "desaturation":

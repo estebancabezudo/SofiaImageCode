@@ -27,4 +27,9 @@ public class Message {
   public Position getPosition() {
     return position;
   }
+
+  @Override
+  public String toString() {
+    return "[message=" + text + ", position=" + position + "]";
+  }
 }

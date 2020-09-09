@@ -3,7 +3,6 @@ package net.cabezudo.sofia.sic.objects;
 import java.nio.file.Path;
 import net.cabezudo.sofia.sic.elements.SICCompileTimeException;
 import net.cabezudo.sofia.sic.elements.SICParameters;
-import net.cabezudo.sofia.sic.exceptions.SICRuntimeException;
 import net.cabezudo.sofia.sic.tokens.SICToken;
 
 /**
@@ -29,7 +28,7 @@ public class ObjectFactory {
       case "gray":
         return new GrayFunctionObject(basePath, token, parameters);
       default:
-        throw new SICRuntimeException("[ObjectFactory:SICObjectFunction] Invalid name for a function object: " + token.getValue());
+        throw new SICCompileTimeException("[ObjectFactory:SICObjectFunction] Invalid name for a function object: " + token.getValue(), token);
     }
   }
 }

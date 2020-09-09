@@ -4,7 +4,7 @@ public class Position {
 
   public static final Position INITIAL = new Position(1, 1);
   private final int row;
-  public final int line;
+  private final int line;
 
   public Position(int line, int row) {
     this.line = line;

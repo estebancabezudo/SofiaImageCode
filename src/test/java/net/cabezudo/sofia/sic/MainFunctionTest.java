@@ -29,5 +29,4 @@ public class MainFunctionTest {
     SICObject object = sofiaImageCode.compile();
     object.run();
   }
-
 }

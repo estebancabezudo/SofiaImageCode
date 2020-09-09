@@ -58,10 +58,10 @@ public class BrightnessFunctionObject extends SICObjectFunction {
         valueParameter = new SICInteger(valueParameter.getToken(), 0, 3000);
         break;
       case "tv":
-        valueParameter = new SICInteger(valueParameter.getToken(), -100, 100);
+        valueParameter = new SICInteger(valueParameter.getToken(), -255, 255);
         break;
       default:
-        throw new RuntimeException("Unexpected value " + modelName + ".");
+        throw new UnexpectedValueException("Unexpected value " + modelName + ".");
     }
   }
 
@@ -85,7 +85,7 @@ public class BrightnessFunctionObject extends SICObjectFunction {
         applyTVBrightness(bi);
         break;
       default:
-        throw new RuntimeException("Unexpected value " + modelName + ".");
+        throw new UnexpectedValueException("Unexpected value " + modelName + ".");
     }
     return new SofiaImage(sofiaImage.getImagePath(), bi);
   }

@@ -15,11 +15,12 @@ import net.cabezudo.sofia.sic.objects.SICRuntimeException;
 public class Main {
 
   public static void main(String... args) throws EmptyQueueException, SICCompileTimeException, SICUnexpectedEndOfCodeException, SICRuntimeException {
-    test("main(loadImage(name=/images/test.600.400.jpg),resize(width=60,height=40),resize(width=30%,height=20%))");
+    test("main(\n    loadImage(\n    name=/images/test.600.400.jpg\n  ),\n  resize(\n    width=300,\n    height=200\n  )\n)\n");
   }
 
   private static void test(String code) throws SICRuntimeException, SICCompileTimeException, SICUnexpectedEndOfCodeException {
     Path resourceDirectory = Paths.get("src", "test", "resources");
+
     String resourcesPath = resourceDirectory.toFile().getAbsolutePath();
     Path basePath = Paths.get(resourcesPath);
     SofiaImageCode sofiaImageCode = new SofiaImageCode(basePath, code, true);

@@ -33,7 +33,6 @@ public class ResizeTest {
     SofiaImageCode sofiaImageCode = new SofiaImageCode(basePath, code, true);
     sofiaImageCode.parse();
     SICObject object = sofiaImageCode.compile();
-    System.out.println(object);
     object.run();
   }
 

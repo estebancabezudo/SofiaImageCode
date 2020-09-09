@@ -11,7 +11,8 @@ public class SICRuntimeException extends SICException {
 
   private static final long serialVersionUID = 1L;
 
-  public SICRuntimeException(String message, SICToken token) {
+  SICRuntimeException(String message, SICToken token) {
     super(message, token);
   }
+
 }

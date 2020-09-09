@@ -7,6 +7,7 @@ import net.cabezudo.sofia.sic.elements.SICCompileTimeException;
 import net.cabezudo.sofia.sic.elements.SICElement;
 import net.cabezudo.sofia.sic.elements.SICFactory;
 import net.cabezudo.sofia.sic.elements.SICUnexpectedEndOfCodeException;
+import net.cabezudo.sofia.sic.exceptions.InvalidCodeException;
 import net.cabezudo.sofia.sic.exceptions.InvalidParameterException;
 import net.cabezudo.sofia.sic.objects.SICObject;
 
@@ -20,6 +21,7 @@ public class SofiaImageCode {
   private final String code;
   private Path basePath;
   private SICElement sicElement;
+  private boolean parsed;
 
   public SofiaImageCode(Path basePath, String plainCode) {
     this(basePath, plainCode, false);
@@ -63,6 +65,7 @@ public class SofiaImageCode {
   public SICElement parse() throws SICCompileTimeException, SICUnexpectedEndOfCodeException {
     SICFactory sicFactory = new SICFactory();
     sicElement = sicFactory.get(tokens);
+    parsed = true;
     return sicElement;
   }
 
@@ -71,6 +74,12 @@ public class SofiaImageCode {
   }
 
   public SICObject compile() throws SICCompileTimeException {
+    if (!parsed) {
+      throw new InvalidCodeException("Code not parsed. User parse method to parse the code.");
+    }
+    if (sicElement == null) {
+      throw new InvalidCodeException("Invalid code.");
+    }
     return sicElement.compile(basePath);
   }
 
