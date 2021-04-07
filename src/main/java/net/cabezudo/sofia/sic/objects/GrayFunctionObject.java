@@ -136,7 +136,7 @@ public class GrayFunctionObject extends SICObjectFunction {
         break;
       case "colorChannel":
         if (channelValueParameter == null) {
-          throw new RuntimeException("Color chanel MUST have a type parameter.");
+          throw new RuntimeException("Color chanel MUST have a channel parameter.");
         }
         String channelValueParameterName = channelValueParameter.getValue();
         switch (channelValueParameterName) {

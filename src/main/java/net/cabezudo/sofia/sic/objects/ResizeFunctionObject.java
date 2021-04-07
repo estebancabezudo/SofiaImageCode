@@ -1,6 +1,7 @@
 package net.cabezudo.sofia.sic.objects;
 
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -165,13 +166,13 @@ public class ResizeFunctionObject extends SICObjectFunction {
       }
     } while (false);
 
+    // TODO implements all method in https://stackoverflow.com/questions/24745147/java-resize-image-without-losing-quality
     Logger.debug("[ResizeFunctionObject:run] Resize image to width of %s and a height of %s", width, height);
     BufferedImage newImage = new BufferedImage(width, height, sofiaImage.getImage().getType());
-    Graphics2D g2d = newImage.createGraphics();
-
-    g2d.drawImage(sofiaImage.getImage(), 0, 0, width, height, null);
-    g2d.dispose();
-
+    Graphics2D graphics2D = newImage.createGraphics();
+    graphics2D.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+    graphics2D.drawImage(sofiaImage.getImage(), 0, 0, width, height, null);
+    graphics2D.dispose();
     return new SofiaImage(sofiaImage.getImagePath(), newImage);
   }
 
